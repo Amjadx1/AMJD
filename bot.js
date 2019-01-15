@@ -3,7 +3,7 @@ const client = new Discord.Client();
  
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-   client.user.setActivity("اكتب اي شي",{type: 'WATCHING'})
+   client.user.setActivity("Amplay",{type: 'WATCHING'})
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
@@ -37,7 +37,7 @@ const queue = new Map();
  
  
  
-var prefix = "البرفكس" 
+var prefix = "Am" 
 client.on('message', async msg => {
     if (msg.author.bot) return undefined;
    
@@ -53,7 +53,7 @@ client.on('message', async msg => {
  
     if (command === `play`) {
         const voiceChannel = msg.member.voiceChannel;
-        if (!voiceChannel) return msg.channel.send('يجب توآجد حضرتك بروم صوتي .');
+        if (!voiceChannel) return msg.channel.send('أدخل روم .');
         const permissions = voiceChannel.permissionsFor(msg.client.user);
         if (!permissions.has('CONNECT')) {
            
@@ -85,10 +85,10 @@ client.on('message', async msg => {
                     var videos = await youtube.searchVideos(searchString, 5);
                     let index = 0;
                     const embed1 = new Discord.RichEmbed()
-                    .setDescription(`**الرجآء من حضرتك إختيآر رقم المقطع** :
+                    .setDescription(`**الرجآء إختيآر رقم المقطع** :
 ${videos.map(video2 => `[**${++index} **] \`${video2.title}\``).join('\n')}`)
  
-                    .setFooter("By @! ๖ۣۜℜIP⇝ℳℜ_ℳⅅℳℛ👑#0590 ")
+                    .setFooter("By AMJD.")
                     msg.channel.sendEmbed(embed1).then(message =>{message.delete(20000)})
                    
                     // eslint-disable-next-line max-depth
@@ -131,7 +131,7 @@ ${videos.map(video2 => `[**${++index} **] \`${video2.title}\``).join('\n')}`)
         serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 50);
         return msg.channel.send(`:speaker: تم تغير الصوت الي **${args[1]}**`);
     } else if (command === `np`) {
-        if (!serverQueue) return msg.channel.send('لا يوجد شيء حالي ف العمل.');
+        if (!serverQueue) return msg.channel.send('لا يوجد شيء يعمل الان.');
         const embedNP = new Discord.RichEmbed()
     .setDescription(`:notes: الان يتم تشغيل : **${serverQueue.songs[0].title}**`)
         return msg.channel.sendEmbed(embedNP);
@@ -159,7 +159,7 @@ ${serverQueue.songs.map(song => `**${++index} -** ${song.title}`).join('\n')}
             serverQueue.connection.dispatcher.resume();
             return msg.channel.send('استأنفت الموسيقى بالنسبة لك !');
         }
-        return msg.channel.send('لا يوجد شيء حالي في العمل.');
+        return msg.channel.send('لا يوجد شيء يعمل الان.');
     }
  
     return undefined;
